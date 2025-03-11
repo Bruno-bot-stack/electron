@@ -95,9 +95,12 @@ runs:
       }
 
       $TEMP_DIR=New-Item -ItemType Directory -Path temp-cache
-      C:\ProgramData\Chocolatey\bin\7z.exe -aoa x -o$TEMP_DIR.FullName $src_cache
-      Get-ChildItem -Path $TEMP_DIR.FullName
-      Get-ChildItem -Path $TEMP_DIR.FullName -Recurse -Directory 
+      echo $TEMP_DIR.FullName
+      $TEMP_DIR_PATH = $TEMP_DIR.FullName
+      echo "TEMP DIR PATH IS: $TEMP_DIR_PATH"
+      C:\ProgramData\Chocolatey\bin\7z.exe -aoa x -o$TEMP_DIR_PATH $src_cache
+      Get-ChildItem -Path $TEMP_DIR_PATH
+      Get-ChildItem -Path $TEMP_DIR_PATH -Recurse -Directory
       if (Test-Path "temp-cache\src") {
         Write-Host "Relocating Cache"
         Remove-Item -Recurse -Force src
