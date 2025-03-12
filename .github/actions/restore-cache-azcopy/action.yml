@@ -86,8 +86,8 @@ runs:
     if: ${{ inputs.target-platform == 'win' }}
     shell: powershell
     run: |
-      $src_cache = "$env:DEPSHASH.tgz"
-      $src_cache_tar = "$env:DEPSHASH.tar"
+      $src_cache = "$env:DEPSHASH.lzma"
+      Rename-Item -Path "$env:DEPSHASH.tgz" -NewName "$src_cache"
       $cache_size = $(Get-Item $src_cache).length
       Write-Host "Downloaded cache is $cache_size"
       if ($cache_size -eq 0) {
@@ -100,7 +100,6 @@ runs:
       $TEMP_DIR_PATH = $TEMP_DIR.FullName
       echo "TEMP DIR PATH IS: $TEMP_DIR_PATH"
       C:\ProgramData\Chocolatey\bin\7z.exe -y x $src_cache -o"$TEMP_DIR_PATH"
-      C:\ProgramData\Chocolatey\bin\7z.exe -y x $TEMP_DIR_PATH\$src_cache_tar -o"$TEMP_DIR_PATH"
       echo "DONE EXTRACT, NOW LOOK AT Directory"      
       dir -Recurse $TEMP_DIR_PATH
       echo "DONE LOOK AT Directory"

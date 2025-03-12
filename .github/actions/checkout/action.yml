@@ -178,7 +178,7 @@ runs:
       if [ "${{ inputs.target-platform }}" = "macos" ]; then
         tar -cf $CACHE_FILE src
       else
-        tar -czf $CACHE_FILE src
+        tar -cf --lzma $CACHE_FILE src
       fi
       echo "Compressed src to $(du -sh $CACHE_FILE | cut -f1 -d' ')"
       cp ./$CACHE_FILE $CACHE_DRIVE/
