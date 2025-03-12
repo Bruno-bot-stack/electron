@@ -99,8 +99,8 @@ runs:
       $TEMP_DIR_PATH = $TEMP_DIR.FullName
       echo "TEMP DIR PATH IS: $TEMP_DIR_PATH"
       C:\ProgramData\Chocolatey\bin\7z.exe -aoa x -o$TEMP_DIR_PATH $src_cache
-      Get-ChildItem -Path $TEMP_DIR_PATH
-      Get-ChildItem -Path $TEMP_DIR_PATH -Recurse -Directory
+      echo "DONE EXTRACT, NOW LOOK AT Directory"
+      dir $TEMP_DIR_PATH
       if (Test-Path "temp-cache\src") {
         Write-Host "Relocating Cache"
         Remove-Item -Recurse -Force src
