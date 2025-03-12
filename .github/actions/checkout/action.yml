@@ -175,10 +175,10 @@ runs:
     shell: bash
     run: |
       echo "Uncompressed src size: $(du -sh src | cut -f1 -d' ')"
-      if [ "${{ inputs.target-platform }}" = "macos" ]; then
-        tar -cf $CACHE_FILE src
+      if [ "${{ inputs.target-platform }}" = "win" ]; then
+        tar -c --lzma -f $CACHE_FILE src
       else
-        tar -cf --lzma $CACHE_FILE src
+        tar -cf $CACHE_FILE src
       fi
       echo "Compressed src to $(du -sh $CACHE_FILE | cut -f1 -d' ')"
       cp ./$CACHE_FILE $CACHE_DRIVE/
