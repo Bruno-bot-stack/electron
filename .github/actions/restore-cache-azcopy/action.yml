@@ -99,11 +99,11 @@ runs:
       echo $TEMP_DIR.FullName
       $TEMP_DIR_PATH = $TEMP_DIR.FullName
       echo "TEMP DIR PATH IS: $TEMP_DIR_PATH"
-      C:\ProgramData\Chocolatey\bin\7z.exe -y x $src_cache -o$TEMP_DIR_PATH 
-      C:\ProgramData\Chocolatey\bin\7z.exe -y x $TEMP_DIR_PATH\$src_cache_tar -o$TEMP_DIR_PATH 
-      echo "DONE EXTRACT, NOW LOOK AT Directory"
+      C:\ProgramData\Chocolatey\bin\7z.exe -y x $src_cache -oC:\actions-runner\_work\electron\electron\temp-cache
+      echo "DONE EXTRACT, NOW LOOK AT Directory"      
       dir -Recurse $TEMP_DIR_PATH
       echo "DONE LOOK AT Directory"
+      C:\ProgramData\Chocolatey\bin\7z.exe
       if (Test-Path "temp-cache\src") {
         Write-Host "Relocating Cache"
         Remove-Item -Recurse -Force src
